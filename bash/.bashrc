@@ -21,7 +21,7 @@ alias grep="grep --color"   # colorize output
 alias grp="grep -rni"       # grep recursively, show line number, ignore case
 alias reload=". ~/.bashrc"  # reload bash settings
 alias myip="curl icanhazip.com"         # shows IP address seen from outside
-alias lsn="lsof -i -P | grep LISTEN"    # who is listening to which port
+alias lsn="lsof -i -P | grep LISTEN"    # which program listening on which port
 alias weather="curl http://wttr.in/"    # show the weather here
 
 # useful bash functions
