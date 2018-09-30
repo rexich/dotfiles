@@ -60,16 +60,6 @@ man() {
     command man "$@"
 }
 
-# Set terminal emulator window/tab title
-case ${TERM} in
-  xterm*|rxvt*|Eterm|aterm|kterm|gnome*|xterm-color|*-256color)
-    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
-    ;;
-  screen)
-    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
-    ;;
-esac
-
 # ------ export variables start ------
 set -a
 
@@ -93,6 +83,9 @@ PAGER="less"
 # set paths
 GOPATH="$HOME/Developer/golang"
 PATH="/Applications/MacVim.app/Contents/bin:$GOPATH/bin:$PATH"
+
+# set title in terminal emulator
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
 set +a
 # ------ export variables finish ------
