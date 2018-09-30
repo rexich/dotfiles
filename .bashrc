@@ -63,7 +63,8 @@ man() {
 # ------ export variables start ------
 set -a
 
-# shell prompts
+# set shell prompts and title in terminal emulator
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 PS1='$(prompt_git)\[\e$([ $EUID == 0 ] && printf "[01;31m" || printf "[01;32m")\]\u@\H \[\e[01;34m\]\w \$\[\e[00m\] '
 PS4="$LINENO + "
 
@@ -83,9 +84,6 @@ PAGER="less"
 # set paths
 GOPATH="$HOME/Developer/golang"
 PATH="/Applications/MacVim.app/Contents/bin:$GOPATH/bin:$PATH"
-
-# set title in terminal emulator
-PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
 
 set +a
 # ------ export variables finish ------
